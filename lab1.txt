@@ -1,0 +1,16 @@
+
+El laboratorio 1 está compuesto de tres proyectos:
+
+hello_world/
+	Enciende y apaga el led de la placa (portb bit 5).
+
+knight_rider/
+	Implementación del Control de pulsador. Configuración de pullpup, 
+	registros de control. Entrada y salidas digitales. 
+	Se presiona el pulsador se enciende el knight_rider.
+	Se presiona nuevamente el pulsador y se apaga el knight_rider.
+
+ultrasonido/ 
+	Control de un sensor digital de ultrasonido.
+	Implementación de delay_10us(); y de delay_ms(n);
+	Reporta via serial la distancia del objeto detectado.
