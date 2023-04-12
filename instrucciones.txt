@@ -40,7 +40,11 @@ IMPORTANTE: No suben al repositorio remoto archivos objetos ni binarios
 ejecutables. Solo archivos de texto. Tampoco suben archivos PDF. 
 Así que conviene realizar make clean antes de un git add.
 
-Como ejemplo, estos son los comandos y pasos que he seguido para subir 
+Los laboratorios deberían seguir el estilo de la programación
+(normas de estilo) propuesto. Si se sigue otro estilo debe ser
+consistente (es decir, siempre se usa el mismo estilo).
+
+Como ejemplo, estos son los comandos y pasos para subir 
 la resolución del primer laboratorio siguiendo esta convención:
 
 git clone https://github.com/zrafa/pse2023.git       # el clone se hace una unica vez
