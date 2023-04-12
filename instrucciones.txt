@@ -1,0 +1,85 @@
+
+https://github.com/zrafa/pse2023
+
+Repositorio para la entrega de los laboratorios. En este repo subiremos
+las entregas siguiendo en lo posible las instrucciones debajo.
+
+Además de los archivos fuente y el Makefile para cada proyecto, 
+se debe proveer un pequeño archivo de texto README a cada laboratorio,
+que nos indique de que manera se pueden ejecutar los tests 
+para verificar las implementaciones que se hicieron.
+
+Para la parte de git haremos lo siguiente :
+
+1. Crear una cuenta en la web de github y enviarnos el nombre de usuario 
+a través de telegram,  o por correo. 
+Nosotros agregaremos el usuario al proyecto pse2023 de github, 
+para que tengamos permiso de hacer push a ese repositorio.
+
+2. Luego de que hayamos sido agregados al proyecto pueden subir los 
+laboratorios. 
+
+Para esta tarea vamos a utilizar la siguiente convención :
+
+Agreguen al proyecto un directorio llamado nombre.apellido. Como ejemplo 
+observen el que ya he agregado (rafael.zurita/), y dentro de ese directorio 
+colocan las resoluciones de los laboratorios en directorios diferentes,
+llamados lab1, lab2, lab3, etc.
+Finalmente, la estructura de directorios tiene que quedar como la de 
+este ejemplo :
+
+proyecto pse2023 raiz
+                 |--------> rafael.zurita/
+                                 |-----> lab1/
+                                           |-----> knight_rider/
+                                           |-----> ultrasonido/
+                                 |-----> lab2/
+                                 |-----> lab3/
+
+IMPORTANTE: No suben al repositorio remoto archivos objetos ni binarios 
+ejecutables. Solo archivos de texto. Tampoco suben archivos PDF. 
+Así que conviene realizar make clean antes de un git add.
+
+Como ejemplo, estos son los comandos y pasos que he seguido para subir 
+la resolución del primer laboratorio siguiendo esta convención:
+
+git clone https://github.com/zrafa/pse2023.git       # el clone se hace una unica vez
+git config ­­global user.name "Rafael Ignacio Zurita"  # usan vuestro nombre y mail :)
+git config ­­global user.email "rafa@fi.uncoma.edu.ar"
+
+# estos dos comandos anteriores tambien los deben hacer una unica vez
+
+
+cd pse2023/
+git pull         # siempre un git pull antes de comenzar a trabajar
+
+mkdir rafael.zurita
+cd rafael.zurita
+mkdir lab1
+cp -a /tmp/lab1/ultrasonido   lab1/  # copio mi resolucion del lab1 al nuevo directorio
+                      # en este ejemplo tenía resuelto el lab1 en /tmp/lab1/
+cd lab1/ultrasonido
+make clean	# nos aseguramos que no subiremos al repo remoto archivos 
+		# objetos o binarios ejecutables
+rm *pdf         # quito el archivo pdf del enunciado del practico si existe
+cd ../../..     # retrocedo tres directorios para posicionarme en el directorio raiz
+
+git add rafael.zurita      # el git add es recursivo, asi que agrega el 
+			  # directorio y sus subdirectorios y archivos
+git commit -m "Agrego la resolucion del lab1"
+
+git pull      # importante antes de hacer un push. Resolvemos conflictos 
+	      # si hubiera
+git push      # el push hará una conexion web a github y les pide el 
+	      # usuario y clave de github
+
+Usen este ejemplo como referencia. Para crear los directorios, copiar y 
+borrar archivos lo pueden realizar como a cada uno le parezca mas comodo. 
+Este ejemplo utiliza comandos desde el shell sólo de referencia. 
+Los comandos de git si conviene ejecutarlos desde el shell. Existen 
+herramientas graficas de git que vienen en Linux, pero via comandos se 
+comprende mejor la sintaxis.
+
+Cualquier consulta de esta práctica en git o de la entrega de los labs 
+podemos utilizar telegram o correo.
+
