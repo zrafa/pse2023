@@ -1,0 +1,20 @@
+
+No borren el serial.o, porque ahi' esta' el codigo para mandar por el serial.
+
+En la Notebook, PC Linux. En una terminal.
+
+# colocamos el puerto serial a 9600 bpp (baudios/bits por segundo).
+
+ stty -F /dev/ttyACM0 speed 9600
+
+# mostramos a pantalla lo que este mandando el microcontrolador
+
+cat /dev/ttyACM0
+
+
+
+Cortamos la transferencia con CTRL+C
+(SIEMPRE HACERLO ANTES DE INTENTAR FLASHEAR, sino NO FUNCIONARA' el FLASH).
+
+
+
