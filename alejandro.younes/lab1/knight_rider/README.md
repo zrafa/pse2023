@@ -9,7 +9,7 @@ Se puede pulsar el botón en cualquier momento para detener el programa y luego 
 Se requieren 3 LEDs, 3 resistencias de 220 ohm y 1 pulsador, conectados de la siguiente manera al Arduino Nano:
 - Ánodo del 1er LED a pin D10, cátodo a pin GND. Con 1er resistencia en serie entre ánodo y D10
 - Ánodo del 2do LED a pin D11, cátodo a pin GND. Con 2da resistencia en serie entre ánodo y D11
-- Ánodo del 3er LED a D12, cátodo a pin GND. Con 3ra resistencia en serie entre ánodo y D12
+- Ánodo del 3er LED a pin D12, cátodo a pin GND. Con 3ra resistencia en serie entre ánodo y D12
 - Un pin del pulsador a D8 y otro pin del pulsador (que no esté conectado internamente al anterior) a GND
 
 Grabar en el Arduino Nano de la manera habitual con consola abierta en este directorio (knight_rider):
