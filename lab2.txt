@@ -1,3 +1,7 @@
+Laboratorio 2
+-------------
+
+Fecha límite de entrega: miércoles 10 de mayo.
 
 El laboratorio 2 está compuesto de cuatro proyectos correspondientes 
 al desarrollo de los drivers UART (serial) y ADC (conversor analógico digital).
