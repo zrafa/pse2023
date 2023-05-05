@@ -25,6 +25,8 @@ gamepad/
 	Ejercicio 6 del tp2.
 
 IMPORTANTE:
+	No subir al repo archivos ejecutables, binarios, .o, pdf, etc.
+
 	El estilo de la programación es parte de la evaluación. Seguir el estilo 
 	recomendado, o uno consistente. 
 
