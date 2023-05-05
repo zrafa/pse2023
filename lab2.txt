@@ -1,0 +1,35 @@
+
+El laboratorio 2 está compuesto de cuatro proyectos correspondientes 
+al desarrollo de los drivers UART (serial) y ADC (conversor analógico digital).
+
+Tambien del uso de un sensor de luz (fotoresistencia), un knob pontenciometro,
+y del uso de un piezo speaker. 
+
+
+Se deben entregar los siguientes proyectos:
+
+ej4_tp_serial/
+	Controla el knight_rider o ultrasonido desde la PC.
+
+fotoresistencia/
+	Controla el brillo de la notebook con la luz del ambiente. Ejercicio 4 
+	del tp2.
+
+speaker/
+	Implementación de alguno de los incisos del ejercicio 5 del tp2.
+
+gamepad/ 
+	Implementación del gamepad para controlar un videojuego arcade.
+	Ejercicio 6 del tp2.
+
+IMPORTANTE:
+	El estilo de la programación es parte de la evaluación. Seguir el estilo 
+	recomendado, o uno consistente. 
+
+	Para este laboratorio hay que subir tambien un video de unos 10 o 15
+	segundos de cada proyecto. Mostrando la funcionalidad.
+	Los videos lo suben a este link. 
+	https://drive.google.com/drive/folders/1PknWOYDqDO9nFTIwcX6Jyn2uW-QhKwgn?usp=sharing
+	Utilizan dentro el mismo esquema de carpetas:
+	nombre.apellido/ y que el nombre del archivo de video corresponda
+	con el nombre del ejercicio del lab (ejemplo: gamepad.mp4).
