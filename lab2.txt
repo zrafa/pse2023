@@ -5,6 +5,8 @@ al desarrollo de los drivers UART (serial) y ADC (conversor analógico digital).
 Tambien del uso de un sensor de luz (fotoresistencia), un knob pontenciometro,
 y del uso de un piezo speaker. 
 
+Crear una carpeta lab2/ en su directorio del repo. Ejemplo:
+rafael.zurita/lab2/
 
 Se deben entregar los siguientes proyectos:
 
@@ -26,6 +28,10 @@ IMPORTANTE:
 	El estilo de la programación es parte de la evaluación. Seguir el estilo 
 	recomendado, o uno consistente. 
 
+	Los proyectos deben funcionar apropiadamente (esto incluye calibrar la 
+	cantidad de bytes en las comunicaciones, evitar rebotes, eliminar bugs
+	que hagan que funcione erraticamente, etc).
+
 	Para este laboratorio hay que subir tambien un video de unos 10 o 15
 	segundos de cada proyecto. Mostrando la funcionalidad.
 	Los videos lo suben a este link. 
@@ -33,3 +39,4 @@ IMPORTANTE:
 	Utilizan dentro el mismo esquema de carpetas:
 	nombre.apellido/ y que el nombre del archivo de video corresponda
 	con el nombre del ejercicio del lab (ejemplo: gamepad.mp4).
+
