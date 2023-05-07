@@ -16,7 +16,7 @@ adc_t *adc = (adc_t *) (0x78);
 #define ADIF 4
 
 void adc_init() {
-    // ADMUX to AVcc with external capacitor and ADLAR (5th bit) to 0 for 10-bit
+    // ADMUX to AVcc with external capacitor and ADLAR (5th bit) to 0 for 12-bit
     adc->admux = (0b01 << 6) | (0 << 5);
 
     // ADEN to 1 (enables ADC) and 0b101 for 32 division factor
