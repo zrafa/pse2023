@@ -7,8 +7,8 @@ void knight_rider_run(void)
   serial_put_string("\n\rKNIGHTRIDER ENCENDIDO\n\r ");
   encendido=0;
   rcv_char='a';
-  (*DDR_B)= 0b00110111;//bit 5= led arduino(para debugear),pb3= ENTRADA, pb0,pb1,pb2=SALIDAS
-  (*PUERTO_B)= 0b00101001;//Habilita pullup en pin pb3 y enciende pin pb0,
+  (*DDR_B)= 0b00110111;//bit 5= led arduino(para debugear), pb0,pb1,pb2=SALIDAS
+  (*PUERTO_B)= 0b00100001;//Enciende pin pb0,
   encendido=1;
   while(encendido){
     verif_pagar();
