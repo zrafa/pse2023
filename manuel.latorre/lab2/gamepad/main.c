@@ -16,48 +16,29 @@ main(void)
   serial_init();
   while(1){
     bit_in = *(PIN_B) & 0b00000001;
-    analog_in = (adc_get(0)/455); //Aca para tener 10 valores del 0 al 9 y poder distribuir: izq:0,1,2,3, med=4,5, der=6,7,8,9
+    analog_in = (adc_get(0)/455); //Aca para tener 10 valores del 0 al 9 y poder distribuir: izq:0,1,2 med=3,4,5,6 der=7,8,9
     //MOVIMIENTO IZQ/DER
-    if(analog_in<=3){
-      if(apretado){ //Si venia apretado y moviendo, ataca y me mueve a la izq
-        input='l';
-      }else if(input!='l'){ //Si venia solo moviendo o quieto, mueve a la izq
+    if(analog_in<=2){
         input='a';
-      }
-    }else if(analog_in>=6){
-      if(apretado){ //Si venia apretado y moviendo, ataca y me mueve a la der
-        input='r';
-      }else if(input!='r'){ //Si venia solo moviendo o quieto, mueve a la der
+    }else if(analog_in>=7){
         input='d';
-      }
     }else{
-      if(!apretado){ //Si estoy quieto y no apreto, solo va quieto
-        input='s';
-      }else{
-        input='b'; //Si estaba apretando, apreta y dispara
+        input='s'; //Si esta en el centro
       }
-    }
+    
 
     //DISPARO
     //Apreta
     if(bit_in==0 && apretado==0){//Si apretó y no venia pulsando
       sleep_ms(10);
-      if(input=='a'){ //Ataque con desp a izq
-        input='l';
-      }else if(input=='d'){//Ataque con desp a der
-        input='r';
-      }else{//Ataque quieto
-        input='b';
-      }
-      
-      *(PUERTO_B)= *(PUERTO_B) | 0b00100000;//Prende PB5=d13
+      input='b';
       apretado=1;
     }
+
     //Suelta
     if(bit_in!=0 && apretado==1){ //Si solto y venia apretado
       sleep_ms(10);
       input='q';
-      *(PUERTO_B)= *(PUERTO_B) & 0b11011111;
       apretado=0;
     }
 

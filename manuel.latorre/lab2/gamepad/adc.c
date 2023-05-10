@@ -35,6 +35,7 @@ void adc_init()
 
 int adc_get(char input)//Valores 0-8
 {
+        //(0 << 3) | (0 << 2) | (0 << 1) | (0 << 0);
         adc->admux =(adc->admux & 0b11110000) | input; //En funcion al input se selecciona el adc
         //adc->admux =(adc->admux & 0b11011111) | (1 << 5); //Setea el adlar en 1 para tener alineacion izquierda y leer 8 bits
 
