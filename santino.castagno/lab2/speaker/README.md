@@ -4,7 +4,7 @@ Este programa realiza las siguientes acciones:
     1. Hace que suene en el speaker la canción de "Happy Birthday".
     2. Permite que, mediante el potenciometro, se manipule el volumen de los sonidos que emite el speaker.
 
-# Observacion
+### Observacion
 
 Para bajar y subir el volumen del speaker es necesario alternar el tiempo que la señal está en alto entré 0us y 10us. Esto implica que, el resto del tiempo de duración de la nota, la señal debería estar en bajo.
 
