@@ -4,7 +4,7 @@ Programa que al pulsar la tecla 'K' en la PC inicia/detiene el programa *knight_
 
 Como sólo un programa puede estar funcionando a la vez entonces se debe detener el Knight Rider si se desea tomar una medición con el ultrasonido.
 
-Para que la PC reciba las pulsaciones se debe ejecutar *bash ej4_tp_serial.sh* en una consola abierta en este directorio (ej4_tp_serial).
+Para que la PC pueda enviar pulsaciones y recibir mediciones se debe ejecutar *tio -b 2400 /dev/ttyUSB0* en una consola abierta en cualquier directorio.
 
 # Instalación
 
@@ -23,4 +23,4 @@ Grabar en el Arduino Nano de la manera habitual con consola abierta en este dire
 
 En caso de error, comprobar que el Arduino Nano esté correctamente conectado y que la variable PUERTO del Makefile coincida con el reportado por _ls /dev_, también probar cambiando variable BPS por 57600.
 
-En la PC se debe tener instalada la aplicación *xdotool* (obtenible desde repositorios de Linux).
+En la PC se debe tener instalada la aplicación *tio* (obtenible desde repositorios de Linux), en teoría cualquier otra aplicación para comunicarse por puerto serie debería funcionar.

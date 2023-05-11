@@ -1,6 +1,9 @@
 #include "adc.h"
 #include "utils.h"
 
+#define SPEAKER 0b00000001  // Positivo de speaker a PB0 (pin D8 Arduino Nano)
+#define KNOB 0b00000000     // Pin medio de knob a ADC0 (pin A0 Arduino Nano)
+
 /* NOTAS */
 int nota_do = 191;   // 261;
 int re = 170;        // 293;
@@ -12,20 +15,18 @@ int si_bemol = 107;  // 466;
 int si = 101;        // 493;
 int do_agudo = 95;   // 523;
 
-// Positivo de speaker a PB0 (pin D8 Arduino Nano)
-// Pin medio de knob a ADC0 (pin A0 Arduino Nano)
 void nota_tiempo(int nota, int dur) {
-    dur = dur / 4;  // 4 veces menos duración para diferenciar mejor las notas
-    nota = nota + adc_get(0) / 64;  // 64 frecuencias posibles (4096/64 = 64)
+    dur = dur / 4;  // 4 veces menos duración para escuchar mejor la canción
+    nota = nota + adc_get(KNOB) / 64;  // 64 frecuencias posibles (4096/64 = 64)
     int i = 0;
     int j = 0;
 
     // Señal levantada dura lo mismo que bajada para hacer un ciclo
-    while (j > dur) {
-        levantar_pin_port_b(1);
+    while (j < dur) {
+        levantar_pin_port_b(SPEAKER);
         for (i = 0; i < nota; i++)
             delay_10us();
-        bajar_pin_port_b(1);
+        bajar_pin_port_b(SPEAKER);
         for (i = 0; i < nota; i++)
             delay_10us();
         j++;
@@ -66,7 +67,7 @@ void cumple() {
 
 void main() {
     inicializar_port_b();
-    salida_pin_port_b(1);  // Positivo de speaker a PB0 (pin D8 Arduino Nano)
+    salida_pin_port_b(SPEAKER);
     adc_init();
 
     while (1) {
