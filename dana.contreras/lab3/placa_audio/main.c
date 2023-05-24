@@ -3,6 +3,8 @@
 #include "serial.h"
 #include "delay.h"
 
+#define N 100
+
 int main()
 {
     volatile unsigned char ch;
@@ -11,13 +13,12 @@ int main()
     serial_init();
     timer1_init();
 
-    sei();
-
     while(1){
         ch = serial_get_char();
-        num = (int)(ch * 130 / 255);
+        num = (int)(ch * N / 255);
+        cli();
         setOCRnA(num);
-        //delay_ms(100);
+        sei();
     }
 
     return 0;

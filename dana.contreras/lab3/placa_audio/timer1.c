@@ -1,5 +1,3 @@
-
-#include <avr/io.h>
 #include <avr/interrupt.h>
 
 typedef struct
@@ -17,9 +15,20 @@ typedef struct
     uint8_t ocr1bl;  /* Register compare B */
     uint8_t ocr1bh;
 
-} volatile timer1_t;
+} timer1_t;
 
 volatile timer1_t *timer1 = (timer1_t *) (0x80);
+volatile unsigned char *timer1_timsk1 = (unsigned char *)(0x6F);
+volatile unsigned char * DDR_B  = (unsigned char *) 0x24;
+
+volatile uint16_t TOP;
+
+#define WGM11 1
+#define WGM12 3
+#define WGM13 4
+#define CS10 0
+#define COM1A1 7
+#define COM1B1 5
 
 void timer1_init()
 {
@@ -31,21 +40,28 @@ void timer1_init()
     // no prescaling
     timer1->tccr1b |= (1<<CS10);
 
-    /* top: 500
+    // top: 500
     timer1->icr1h = 0x01;
     timer1->icr1l = 0xF4;
-    */
-    // top: 512
-    timer1->icr1h = 0x02;
-    timer1->icr1l = 0x00;
 
     // pin 9: output
-    DDRB |= (1 << PB1); 
+    *DDR_B |= 0x02; 
+
+    // clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM (non-inverting mode)
+    timer1->tccr1a |= ((1<<COM1A1) | (1<<COM1B1));
+
+    // overflow interrupt enable
+    *timer1_timsk1 |= 0x01;
 
 }
 
 void setOCRnA(uint16_t value)
 {
-    timer1->ocr1ah = (value>>8);
-    timer1->ocr1al = (uint8_t)((value << 8) >> 8);
+    TOP = value;
+}
+
+ISR(TIMER1_OVF_vect)
+{
+    timer1->ocr1ah = (TOP>>8);
+    timer1->ocr1al = TOP;
 }

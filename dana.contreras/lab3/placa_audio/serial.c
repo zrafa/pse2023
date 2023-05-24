@@ -28,7 +28,7 @@ typedef struct
 volatile uart_t *serial_port = (uart_t *) (0xc0);
 
 #define F_CPU 4000000UL
-#define USART_BAUDRATE 2400
+#define USART_BAUDRATE 115200
 #define BAUD_PRESCALE (((F_CPU/(USART_BAUDRATE*16UL)))-1)
 #define RECEIVER_ENABLE 0x10 /* RXEN0 Habilitar la recepcion */
 #define TRANSMITTER_ENABLE 0x08 /* TXEN0 Habilitar la transmicion */
@@ -50,18 +50,11 @@ void serial_init()
     serial_port->status_control_b = (unsigned char) (EN_RX_TX);
 }
 
-/* enviar un byte a traves del dispositivo inicializado */
 void serial_put_char(char c)
 {
-
-    /* completar con E/S programada */
-    /* Se debe esperar verificando el bit UDREn del registro UCSRnA,
-       hasta que el buffer esté listo para recibir un dato a transmitir */
-
     while(!((serial_port->status_control_a) & (READY_TO_WRITE)));
 
     serial_port->data_es = c;
-
 }
 
 void serial_put_str(char * string)
@@ -77,7 +70,7 @@ void serial_put_int(int value, int num_digits)
     char ch[num_digits]; 
     int i = 0;
 
-    sprintf(ch, "%d", value); // convierte el entero en una cadena de caracteres
+    sprintf(ch, "%d", value);
 
     while (ch[i] != '\0'){
         serial_put_char(ch[i]);
@@ -91,12 +84,9 @@ char serial_get_char_ready(void)
 }
 
 int serial_get_char(void)
-{
-     /* Wait for the next character to arrive. */
-    
+{ 
     while (!((serial_port->status_control_a)>>7));
 
     return (serial_port->data_es);
-
 }
 

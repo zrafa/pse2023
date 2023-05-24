@@ -1,10 +1,9 @@
 #!/bin/bash
 
-music_file="lets_groove.raw"
+music_file="cancion.mp3.wav"
 port="/dev/ttyUSB0"
 
-stty -F "$port" speed 2400
+stty -F "$port" speed 115200
 
-cat /dev/ttyUSB0 | while IFS= read -r -n1 byte; do
-    echo -n "$byte" > "$port"
-done < <(od -An -v -t u1 -w1 "$music_file")
+cat $music_file > $port
+#ffmpeg  -f pulse -i default  -ar 11000 -acodec pcm_u8 -ac 1 -f wav pipe:1 | cat > $port
