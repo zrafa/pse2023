@@ -1,0 +1,42 @@
+Laboratorio 3
+-------------
+
+Fecha límite de entrega: miércoles 14 de junio.
+
+El laboratorio 3 está compuesto de dos proyectos correspondientes 
+al desarrollo de los drivers para los timers y del uso de XINU RTOS.
+
+Tambien del uso de un motor CC, y un servo.
+
+Crear una carpeta lab3/ en su directorio del repo. Ejemplo:
+rafael.zurita/lab3/
+
+Se deben entregar los siguientes proyectos:
+
+lab3_timer_app/
+	La aplicación que eligió implementar con timers (servo, comunicación
+        láser, o placa de audio 8bit 8khz)
+
+rtos_lab/
+	Implementación de la solución definida en rtos-lab.txt para el 
+	uso inicial de XINU RTOS.
+
+
+IMPORTANTE:
+	No subir al repo archivos ejecutables, binarios, .o, pdf, etc.
+
+	El estilo de la programación es parte de la evaluación. Seguir el estilo 
+	recomendado, o uno consistente. 
+
+	Los proyectos deben funcionar apropiadamente (esto incluye calibrar la 
+	cantidad de bytes en las comunicaciones, evitar rebotes, eliminar bugs
+	que hagan que funcione erraticamente, etc).
+
+	Para este laboratorio hay que subir tambien un video de unos 10 o 15
+	segundos de cada proyecto. Mostrando la funcionalidad.
+	Los videos lo suben a este link. 
+	https://drive.google.com/drive/folders/1PknWOYDqDO9nFTIwcX6Jyn2uW-QhKwgn?usp=sharing
+	Utilizan dentro el mismo esquema de carpetas:
+	nombre.apellido/ y que el nombre del archivo de video corresponda
+	con el nombre del ejercicio del lab (ejemplo: gamepad.mp4).
+

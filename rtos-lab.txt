@@ -1,0 +1,110 @@
+
+Descripción general del sistema de control de planta química
+------------------------------------------------------------
+
+Se requiere un sistema embebido de control de una maquinaria industrial,
+operada por un técnico especialista del proceso.
+El equipo electromecánico abre y cierra una válvula controlada por un motor
+de corriente continua. Esta válvula permite el ingreso de varios químicos
+previamente preparados, y que son requeridos en el proceso. Tambien, el
+operador controla un sistema de ventilación que permite la expulsión de gases
+producidos también por el proceso de la planta. El sistema de ventilación es
+controlado por un servo, que abre o cierra con un ángulo preciso ciertas
+aberturas de escape.
+El técnico operador requiere de un feedback visual de la velocidad del motor
+que opera, y de un reporte del ángulo de de las aberturas de escape.
+
+
+Hardware
+--------
+
+El hardware del sistema comprende un motor CC, cuya velocidad es controlada por
+un knob en el panel del técnico. Un led testigo que parpadea con una frecuencia
+proporcional a la velocidad del motor, requerido como feedback para el
+operario. Un servo controla el angulo de apertura de la ventilación, y su
+posición es seleccionada por el operador a través de dos teclas de la consola.
+El operador utiliza la consola (implementada sobre un serial uart) para tener
+un reporte mínimo y poder controlar el servo y el estado del motor.
+
+
+Requisitos funcionales
+----------------------
+
+La consola del operador:
+- si el operador presiona 'b', el motor se detiene.
+- si el operador presiona 'n' el motor continua la marcha en la velocidad
+  actual.
+
+- si el operador presiona 'a' el servo se mueve a la izquierda (no al extremo
+  izquierdo, sino que desde la posición actual hace un pequeño movimiento
+  hacia la izquierda).
+- si el operador presiona 'd' el servo se mueve a la derecha.
+
+El knob controla la velocidad de un motor cc.
+
+Se mantiene por software un real time clock que mantiene el tiempo
+transcurrido. comenzando en 00:00:00 (hora:minutos:segundos) desde que
+comenzó a ejecutarse el sistema desde el último reset.
+
+Un led testigo parpadea. La frecuencia del parpadeo es proporcional a la
+velocidad del motor. Mayor velocidad, mayor frecuencia. Cuando el motor está
+detenido el led está apagado. Suponga que a minima velocidad el led parpadea a
+1hz. y a maxima velocidad a 10hz.
+
+Se reporta al operador el tiempo transcurrido desde el ultimo reset, la
+velocidad del motor (en porcentaje sobre 100%), y el angulo al que apunta el
+servo. Cada un segundo.
+
+Ejemplo de salida recibida por el operador:
+00:02:34. velocidad: 20 %. servo: 180 grados.
+00:02:35. velocidad: 20 %. servo: 180 grados.
+00:02:36. velocidad: 30 %. servo: 180 grados.
+...
+
+
+
+Posible modelado del sistema
+----------------------------
+
+Modele e implemente el sistema. 
+
+Se presenta aquí una idea de modelado posible:
+
+1. una tarea para gestionar el rtc
+2. una tarea para el led testigo
+3. una tarea para knob y motor
+4. una tarea para el servo
+5. una tarea de la consola del operador que obtiene la entrada.
+6. una tarea que reporta cada un segundo el estado del sistema al operador.
+
+La tarea 5. deberá comunicarse con la tarea 4. y la tarea 3. El pasaje de
+mensajes puede no ser de utilidad acá, porque el receptor bloquearía (y no
+podría realizar su funcion continua). Por ejemplo: si la tarea que lee el knob,
+lo debe hacer constantemente, entonces esperar por un mensaje no es posible,
+porque bloqueará la tarea hasta que no llegue un mensaje. Por ahí conviene
+compartir una variable global.
+
+Acerca de variables globales compartidas para comunicación entre tareas (región
+crítica):
+
+Si la variable global es un char o unsigned char (un byte), y una tarea la
+modifica y otra ÚNICAMENTE LA LEE, entonces no hay necesidad de proteger esa
+región crítica.
+Por ejemplo, si la tarea consola se comunica con la tarea motor con memoria
+compartida (una variable global char por ejemplo) tal vez la tarea motor es
+simplemente lectora (si observa que debe detener detiene, si el estado es
+'en marcha' pone en marcha el motor). Tal vez en este caso no es necesario
+proteger esa variable global.
+
+En cambio, si la variable global compartida ocupa varios bytes entonces sí hay
+que proteger la región crítica.
+
+Otro WARNING: cuantas MÁS VARIABLES GLOBALES se utilicen (para mantener el
+estado del sistema) más complejo se vuelve entender el sistema (usualmente).
+
+La tarea 2. podría ser simplemente lectora de la velocidad actual del motor
+(para saber a que frecuencia titilar). Tal vez no es necesario proteger la
+variable global compartida con la tarea knob-motor (si se usa esa técnica).
+
+
+
