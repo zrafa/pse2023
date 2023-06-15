@@ -17,7 +17,7 @@ extern unsigned char motor_speed;
 extern unsigned char input_op;
 
 /**
- * tarea encargada de manipular la velocidad del motor utilizando el snob-potenciometro
+ * tarea encargada de manipular la velocidad del motor utilizando el knob-potenciometro
  */
 int knob_motor(void)
 {

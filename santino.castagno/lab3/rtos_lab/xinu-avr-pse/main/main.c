@@ -1,16 +1,18 @@
 /**
  *
- * task_knob_motor:  	Toma como entrada la posicion del knob y modifica la velocidad del motor.
- * task_led_observer: 	Lee la velocidad actual del motor y enciende el led a una frecuencia proporcional.
- * task_reporter:		Obtiene la entrada de la consola del operador del sistema. (main)
- * task_reporter:		Reporta constantemente el estado del sistema al operador.
- * task_servo_handler:	Manipula la posicion del servo
+ * task_knob_motor:  		Toma como entrada la posicion del knob y modifica la velocidad del motor.
+ * task_led_observer: 		Lee la velocidad actual del motor y enciende el led a una frecuencia proporcional.
+ * task_operator:			Obtiene la entrada de la consola del operador del sistema. (main)
+ * task_reporter:			Reporta constantemente el estado del sistema al operador.
+ * task_servo_handler:		Manipula la posicion del servo
+ * task_real_time_clock:	Mantiene el estado del tiempo actual
  *
  */
 
 #include <xinu.h>
 #include "serial.h"
 
+/* variables globales */
 unsigned char motor_speed = 0;
 unsigned char servo_angle = 0;
 unsigned char clock = 0;
@@ -24,7 +26,6 @@ volatile unsigned char *DDR_B = (unsigned char *)0x24;	  // direccion de DDR_B
 volatile unsigned char *PUERTO_B = (unsigned char *)0x25; // direccion de PORT_B
 
 /* definicion de tareas (cuyo codigo fuente es externo) */
-// extern int led_observer(void);
 extern int reporter(void);
 extern int comunicacion(void);
 extern int knob_motor(void);
@@ -32,7 +33,7 @@ extern int servo_handler(void);
 extern int led_observer(void);
 extern int real_time_clock(void);
 
-/* main es la tarea que toma las entradas del sistema (reporter) */
+/* main es la tarea que toma las entradas del sistema (operator) */
 int main(void)
 {
 	serial_init();
