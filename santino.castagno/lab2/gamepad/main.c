@@ -28,25 +28,26 @@ int main()
     while (1)
     {
         input_btn = (*PIN_B);
-        sleep_ms(1);
 
         input_adc = adc_get(0);
-        sleep_ms_times(50, 1);
+        // serial_put_int(input_adc, 4);
+        // serial_put_string("\r\n");
+        sleep_ms_times(20, 1);
         if (!(input_btn & HIGH_BTN_SHOOT))
         {
             switch (input_adc)
             {
             case 0 ... ADC_LEFT_MOVE:
                 serial_put_char('3');
-                serial_put_char('\n');
+                // serial_put_char('\n');
                 break;
             case ADC_LEFT_MOVE + 1 ... ADC_RIGHT_MOVE - 1:
                 serial_put_char('5');
-                serial_put_char('\n');
+                // serial_put_char('\n');
                 break;
             case ADC_RIGHT_MOVE ... ADC_MAX_VALUE:
                 serial_put_char('4');
-                serial_put_char('\n');
+                // serial_put_char('\n');
                 break;
             default:
                 break;
@@ -58,15 +59,15 @@ int main()
             {
             case 0 ... ADC_LEFT_MOVE:
                 serial_put_char('1');
-                serial_put_char('\n');
+                // serial_put_char('\n');
                 break;
             case ADC_LEFT_MOVE + 1 ... ADC_RIGHT_MOVE - 1:
                 serial_put_char('0');
-                serial_put_char('\n');
+                // serial_put_char('\n');
                 break;
             case ADC_RIGHT_MOVE ... ADC_MAX_VALUE:
                 serial_put_char('2');
-                serial_put_char('\n');
+                // serial_put_char('\n');
                 break;
             default:
                 break;

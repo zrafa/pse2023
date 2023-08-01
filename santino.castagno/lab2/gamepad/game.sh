@@ -8,23 +8,19 @@ cat /dev/ttyACM0 |
             xdotool keyup d
             ;;
         1)
-            xdotool keydown a
+            xdotool key -d 0 a
             ;;
         2)
-            xdotool keydown d
+            xdotool key -d 0 d
             ;;
         3)
-            xdotool key f
-            xdotool keydown a
+            xdotool key -d 0 "f+a"
             ;;
         4)
-            xdotool key f
-            xdotool keydown d
+            xdotool key -d 0 "f+d"
             ;;
         5)
-            xdotool keyup a
-            xdotool keyup d
-            xdotool key f
+            xdotool key -d 0 "f"
             ;;
         *)
             echo "invalid option received"
